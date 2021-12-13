@@ -8,8 +8,9 @@ from dirsync import sync
 import logging
 
 def print_hi(name):
-    logger = logging.getLogger("simplelog")
-    sync('./test1', './test2', 'sync', purge=True, verbose=True, logger=logger)
+    logging.basicConfig(filename="sync.log", level=logging.DEBUG)
+    my_log = logging.getLogger('dirsync')
+    sync('./test1', './test2', 'sync', purge=True, verbose=True, logger=my_log)
 
 
 
