@@ -8,7 +8,14 @@ from dirsync import sync
 import logging
 
 def print_hi(name):
-    logging.basicConfig(filename="sync.log", level=logging.DEBUG)
+    file_log = logging.FileHandler('Log.log')
+    console_out = logging.StreamHandler()
+
+    logging.basicConfig(handlers=(file_log, console_out),
+                        format='[%(asctime)s | %(levelname)s]: %(message)s',
+                        datefmt='%m.%d.%Y %H:%M:%S',
+                        level=logging.INFO)
+    #logging.basicConfig(filename="sync.log", level=logging.DEBUG)
     my_log = logging.getLogger('dirsync')
     sync('./test1', './test2', 'sync', purge=True, verbose=True, logger=my_log)
 
