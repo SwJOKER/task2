@@ -10,16 +10,17 @@ import logging
 import sys
 DIR_ONE = sys.argv[1]
 DIR_TWO = sys.argv[2]
-PERIOD = sys.argv[3]
+PATH_LOG = sys.argv[3]
+PERIOD = sys.argv[4]
 
 def syncronize_dir():
-    file_log = logging.FileHandler('Log.log')
+    file_log = logging.FileHandler(PATH_LOG)
     console_out = logging.StreamHandler()
     logging.basicConfig(handlers=(file_log, console_out),
                         format='[%(asctime)s | %(levelname)s]: %(message)s',
                         datefmt='%m.%d.%Y %H:%M:%S',
                         level=logging.INFO)
-    my_log = logging.getLogger('dirsync')
+    my_log = logging.getLogger('dir_syncronize')
     while True:
         sync(DIR_ONE, DIR_TWO, 'sync', purge=True, verbose=True, logger=my_log)
         time.sleep(int(PERIOD))
