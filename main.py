@@ -5,10 +5,13 @@ import time
 from dirsync import sync
 import logging
 import sys
-
+#папка донор
 DIR_ONE = sys.argv[1]
+#папка рецепиент
 DIR_TWO = sys.argv[2]
+#путь к логу
 PATH_LOG = sys.argv[3]
+#частота работы скрипта, сек
 PERIOD = sys.argv[4]
 #не регулярные выражения, главное работает: в файле лога оставляет только нужные операции.
 def delete_garbage():
