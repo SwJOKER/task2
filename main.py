@@ -21,13 +21,7 @@ def delete_garbage():
     f = open(PATH_LOG, 'w')
     for line in lines:
         msg = line.split('|')[1]
-        if msg.find("Updating") != -1:
-            f.write(line)
-        if msg.find("Copying") != -1:
-            f.write(line)
-        if msg.find("Deleting") != -1:
-            f.write(line)
-        if msg.find("created") != -1:
+        if (msg.find("Updating") != -1) or (msg.find("Copying") != -1) or (msg.find("Deleting") != -1) or (msg.find("created") != -1):
             f.write(line)
     f.close()
 
