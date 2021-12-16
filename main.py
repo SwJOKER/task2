@@ -1,5 +1,4 @@
 # This is a sample Python script.
-import logging
 import time
 
 from dirsync import sync
@@ -13,8 +12,9 @@ DIR_TWO = sys.argv[2]
 PATH_LOG = sys.argv[3]
 #частота работы скрипта, сек
 PERIOD = sys.argv[4]
-#не регулярные выражения, главное работает: в файле лога оставляет только нужные операции.
-def delete_garbage():
+
+#главное работает: в файле лога оставляет только нужные операции.
+def delete_garbage_log():
     f = open(PATH_LOG, 'r')
     lines = f.readlines()
     f.close()
@@ -24,8 +24,6 @@ def delete_garbage():
         if (msg.find("Updating") != -1) or (msg.find("Copying") != -1) or (msg.find("Deleting") != -1) or (msg.find("created") != -1):
             f.write(line)
     f.close()
-
-
 
 def syncronize_dir():
     file_log = logging.FileHandler(PATH_LOG)
@@ -37,10 +35,9 @@ def syncronize_dir():
     my_log = logging.getLogger('dir_syncronize')
     while True:
         sync(DIR_ONE, DIR_TWO, 'sync', purge=True, verbose=True, logger=my_log)
-        delete_garbage()
+        delete_garbage_log()
         time.sleep(int(PERIOD))
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     syncronize_dir()
 
