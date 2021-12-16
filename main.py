@@ -13,7 +13,6 @@ PATH_LOG = sys.argv[3]
 #частота работы скрипта, сек
 PERIOD = sys.argv[4]
 
-#главное работает: в файле лога оставляет только нужные операции.
 def delete_garbage_log():
     f = open(PATH_LOG, 'r')
     lines = f.readlines()
